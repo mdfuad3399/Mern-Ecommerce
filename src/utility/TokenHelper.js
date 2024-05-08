@@ -1,19 +1,18 @@
-const jwt = require("jsonwebtoken")
+const jwt=require('jsonwebtoken');
 
-
-
-exports.EncodeToken = (email,user_id) =>{
-    const KEY = "123-abc-xyz"
-    const EXPAIRE = {expiredIn : '24h'}
-    const PAYLOAD = {email:email , user_id:user_id}
-    return jwt.sign(PAYLOAD,KEY,EXPAIRE)
+exports.EncodeToken=(email,user_id)=>{
+    let KEY="123-ABC-XYZ";
+    let EXPIRE={expiresIn: '24h'}
+    let PAYLOAD={email:email, user_id:user_id}
+    return jwt.sign(PAYLOAD,KEY,EXPIRE)
 }
 
-exports.DecodeToken = (token) =>{
-      try {
-            const KEY = "123-abc-xyz"
-            return jwt.verify(token,KEY)
-      } catch (error) {
+exports.DecodeToken=(token)=>{
+    try {
+        let KEY="123-ABC-XYZ";
+        return jwt.verify(token,KEY)
+    }
+    catch (e) {
         return null
-      }
+    }
 }

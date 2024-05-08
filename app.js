@@ -3,7 +3,7 @@ const Router = require('./src/routes/api')
 const app = express()
 
 // import sequiry middlewares
-
+const cookieParser = require('cookie-parser')
 const cors = require("cors")
 const hpp = require("hpp")
 const helmet = require("helmet")
@@ -18,6 +18,7 @@ app.use(helmet())
 app.use(expressMongoSanitize())
 app.use(xssClean())
 app.use(hpp())
+app.use(cookieParser())
 
 // BodyParser implementation
 app.use(bodyParser.json())
