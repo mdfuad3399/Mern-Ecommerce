@@ -5,6 +5,7 @@ const { UserOtp, VerifyLogin, UserLogout, CreateProfile, UpdateProfile, ReadProf
 const AuthVerification = require('../middlewares/AuthVerification')
 const { SaveWishList, RemoveWishList, WishList } = require('../controllers/WishListController')
 const { CartList, SaveCartList, RemoveCartList, UpdateCartList } = require('../controllers/CartListController')
+const { CreateInvoice, InvoiceList, InvoiceProductList, PaymentSuccess, PaymentCancel, PaymentFail, PaymentIPN } = require('../controllers/InvoiceController')
 
 
 
@@ -42,6 +43,16 @@ router.get('/CartList',AuthVerification,CartList)
 router.post('/SaveCartList',AuthVerification,SaveCartList)
 router.post('/UpdateCartList/:cartID',AuthVerification,UpdateCartList)
 router.post('/RemoveCartList',AuthVerification,RemoveCartList)
+
+//InVoice And Payment
+router.get('/CreateInvoice',AuthVerification,CreateInvoice)
+router.get('/InvoiceList',AuthVerification,InvoiceList)
+router.get('/InvoiceProductList/:invoice_id',AuthVerification,InvoiceProductList)
+router.post('/PaymentSuccess/:trxID',PaymentSuccess)
+router.post('/PaymentCancel/:trxID',PaymentCancel)
+router.post('/PaymentFail/:trxID',PaymentFail)
+router.post('/PaymentIPN/:trxID',PaymentIPN)
+
 
 
 module.exports = router

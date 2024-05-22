@@ -12,7 +12,7 @@ exports.UserOtpService = async(req) =>{
        const EmailSubject = 'Email Verification'
        await EmailSend(email,EmailText,EmailSubject)
        await UserModel.updateOne({email:email},{$set:{otp:code}}, {upsert:true} )
-       return {status:"status",message:"6 digit OTP has beeb send"}
+       return {status:"status",message:"6 digit OTP has been send"}
    } catch (error) {
       return {status:"Failed" , message:"Something Went Wrong"}
    }
