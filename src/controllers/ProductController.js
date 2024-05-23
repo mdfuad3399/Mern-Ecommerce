@@ -1,4 +1,4 @@
-const { BrandListService, CategoryListService, SliderListService, ListByBrandService, ListByCategoryService, ListByRemarkService, ListBySmilierService, DetailsService, ListByKeywordService, ReviewListService } = require("../services/ProductServices")
+const { BrandListService, CategoryListService, SliderListService, ListByBrandService, ListByCategoryService, ListByRemarkService, ListBySmilierService, DetailsService, ListByKeywordService, ReviewListService, CreateReviewService } = require("../services/ProductServices")
 
 
 
@@ -67,6 +67,7 @@ exports.ProductReviewList = async(req,res)=>{
     const result = await ReviewListService(req)
     return res.status(200).json(result)
 }
-exports.CreateReview = async(req,res)=>{
-    
+exports.CreateReview=async(req,res)=>{
+    let result=await CreateReviewService(req);
+    return res.status(200).json(result)
 }

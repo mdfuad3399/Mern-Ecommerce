@@ -228,22 +228,21 @@ exports.ReviewListService = async(req)=>{
 
 
 
-
-
-
-
-
-exports.CreateReviewService = async()=>{
-    try {
-        
-    } catch (error) {
-        return {status:"Failed",message:error}
+exports.CreateReviewService = async (req) => {
+    try{
+        let user_id=req.headers.user_id;
+        let reqBody=req.body;
+        let data=await ReviewModel.create({
+             productID:reqBody['productID'],
+             userID:user_id,
+             des:reqBody['des'],
+             rating:reqBody['rating'],
+         })
+        return {status:"success",data:data}
+    }
+    catch (e) {
+        return {status:"fail",data:e.toString()}
     }
 }
-exports.ListByFilterService = async()=>{
-    try {
-        
-    } catch (error) {
-        return {status:"Failed",message:error}
-    }
-}
+
+

@@ -1,11 +1,12 @@
 const express = require('express')
 const router = express.Router()
-const { ProductBrandList, ProductCategoryList, ProductSliderList, ProductListByBrand, ProductListByCategory, ProductListBySmilier, ProductListByKeyword, ProductDetails, ProductReviewList, ProductListByFilter, ProductListByRemark } = require('../controllers/ProductController')
+const { ProductBrandList, ProductCategoryList, ProductSliderList, ProductListByBrand, ProductListByCategory, ProductListBySmilier, ProductListByKeyword, ProductDetails, ProductReviewList, ProductListByFilter, ProductListByRemark, CreateReview } = require('../controllers/ProductController')
 const { UserOtp, VerifyLogin, UserLogout, CreateProfile, UpdateProfile, ReadProfile } = require('../controllers/UserController')
 const AuthVerification = require('../middlewares/AuthVerification')
 const { SaveWishList, RemoveWishList, WishList } = require('../controllers/WishListController')
 const { CartList, SaveCartList, RemoveCartList, UpdateCartList } = require('../controllers/CartListController')
 const { CreateInvoice, InvoiceList, InvoiceProductList, PaymentSuccess, PaymentCancel, PaymentFail, PaymentIPN } = require('../controllers/InvoiceController')
+const { FeaturesList } = require('../controllers/FeaturesController')
 
 
 
@@ -52,6 +53,12 @@ router.post('/PaymentSuccess/:trxID',PaymentSuccess)
 router.post('/PaymentCancel/:trxID',PaymentCancel)
 router.post('/PaymentFail/:trxID',PaymentFail)
 router.post('/PaymentIPN/:trxID',PaymentIPN)
+
+//Features
+router.get('/FeaturesList',FeaturesList)
+
+//Review
+router.post('/CreateReview',AuthVerification,CreateReview)
 
 
 
